@@ -14,6 +14,16 @@ const createItem = async (req, res) => {
   }
 };
 
+const getItem = async (req, res) => {
+  try {
+    const items = await Item.find();
+    res.json({ message: "success", object: items });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
 module.exports = {
   createItem,
+  getItem,
 };

@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 const detailSchema = mongoose.Schema({
   //order id
-  oid: {
+  order: {
     type: mongoose.Schema.Types.ObjectId,
   },
 
   //user id
-  uid: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },

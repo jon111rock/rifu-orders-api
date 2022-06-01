@@ -22,13 +22,13 @@ const createOrderSeed = async () => {
 
     let userDetailIds = [];
     for (let i = 0; i < details.length; i++) {
-      if (details[i].uid.equals(user._id)) {
+      if (details[i].user.equals(user._id)) {
         userDetailIds.push(details[i]._id);
       }
     }
 
     await Order.create({
-      uid: user._id,
+      user: user._id,
       date: "2021/05/19",
       completed_date: "2021/05/23",
       type: "自取",

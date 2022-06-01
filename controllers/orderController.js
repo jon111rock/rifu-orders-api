@@ -14,13 +14,13 @@ const createOrder = async (req, res) => {
   let details = [];
   //find detail by userId
   try {
-    details = await Detail.find({ uid: userId.id });
+    details = await Detail.find({ user: userId.id });
   } catch (error) {
     res.json({ message: error.message });
   }
 
   const newOrder = new Order({
-    uid: userId._id,
+    user: userId._id,
     date: req.body.date,
     completed_date: req.body.completed_date,
     type: req.body.type,
@@ -38,7 +38,7 @@ const createOrder = async (req, res) => {
 const getOrders = async (req, res) => {
   try {
     const newOrder = await Order.find()
-      .populate("uid")
+      .populate("user")
       .populate("details")
       .populate({
         path: "details",
@@ -55,7 +55,7 @@ const getOrders = async (req, res) => {
 const getOneOrder = async (req, res) => {
   try {
     const order = await Order.findOne({ _id: req.params.orderId })
-      .populate("uid")
+      .populate("user")
       .populate("details")
       .populate({
         path: "details",
