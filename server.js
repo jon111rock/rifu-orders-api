@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const itemRouter = require("./routes/Item");
 const detailRouter = require("./routes/detail");
 const userRouter = require("./routes/user");
+const orderRouter = require("./routes/order");
 
 dotenv.config();
 app.use(express.json());
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use("/api/item", itemRouter);
 app.use("/api/detail", detailRouter);
 app.use("/api/user", userRouter);
+app.use("/api/order", orderRouter);
 
 mongoose.connect(process.env.DB_CONNECTION, () => {
   console.log("connected to DB");

@@ -27,10 +27,7 @@ const createDetail = async (req, res) => {
 
 const getDetails = async (req, res) => {
   try {
-    const details = await Detail.find()
-      .populate("item")
-      .populate({ path: "uid", select: "name address phone_number" })
-      .lean();
+    const details = await Detail.find().populate("item").populate("uid").lean();
     res.json({ message: "success", object: details });
   } catch (error) {
     res.json({ message: error.message });
