@@ -1,5 +1,6 @@
 const Detail = require("../models/Detail");
 const Item = require("../models/Item");
+const User = require("../models/User");
 
 const createDetail = async (req, res) => {
   let requestBody = req.body;
@@ -13,6 +14,7 @@ const createDetail = async (req, res) => {
 
   try {
     const newDetail = new Detail({
+      uid: req.params.userId,
       count: requestBody.count,
       item: requestBody.item,
     });
@@ -25,7 +27,10 @@ const createDetail = async (req, res) => {
 
 const getDetails = async (req, res) => {
   try {
-    const details = await Detail.find().populate("item").lean();
+    const details = await Detail.find()
+      .populate("item")
+      .populate({ path: "uid", select: "name address phone_number" })
+      .lean();
     res.json({ message: "success", object: details });
   } catch (error) {
     res.json({ message: error.message });

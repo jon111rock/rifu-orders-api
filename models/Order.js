@@ -1,24 +1,21 @@
 const mongoose = require("mongoose");
 
 const orderSchema = mongoose.Schema({
-  oid: {
+  date: {
     type: String,
   },
-  date: {
-    type: Date,
-  },
   completed_date: {
-    type: Date,
+    type: String,
   },
   type: {
     type: String,
   },
-  detail: {
+  state: {
+    type: String,
+  },
+  details: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: "Detail",
-  },
-  status: {
-    type: String,
   },
 });
 
