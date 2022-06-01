@@ -97,10 +97,50 @@ const updateOrder = async (req, res) => {
   }
 };
 
+const getAllOrderWithDetail = async (req, res) => {
+  let details = [];
+  try {
+    details = await Detail.find({ user: req.params.userId });
+  } catch (error) {
+    res.json({ message: error.message });
+    return;
+  }
+
+  try {
+    await Order.updateOne(
+      { user: req.params.userId },
+      {
+        $set: {
+          details: details,
+        },
+      }
+    );
+  } catch (error) {
+    res.json({ message: error.message });
+    return;
+  }
+
+  try {
+    const newOrder = await Order.find()
+      .populate("user")
+      .populate("details")
+      .populate({
+        path: "details",
+        populate: {
+          path: "item",
+        },
+      });
+    res.json({ message: "success", object: newOrder });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
 module.exports = {
   createOrder,
   getOrders,
   getOneOrder,
   deleteOrder,
   updateOrder,
+  getAllOrderWithDetail,
 };

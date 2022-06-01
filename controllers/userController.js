@@ -33,7 +33,7 @@ const updatedUser = async (req, res) => {
         $set: {
           name: req.body.name,
           address: req.body.address,
-          phone_number: req.body.phoneNumber,
+          phone_number: req.body.phone_number,
         },
       }
     );

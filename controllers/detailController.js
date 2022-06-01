@@ -37,6 +37,15 @@ const getDetails = async (req, res) => {
   }
 };
 
+const getOneDetail = async (req, res) => {
+  try {
+    const detail = await Detail.findOne({ _id: req.params.detailId });
+    res.json({ message: "success", object: detail });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
 const updateDetail = async (req, res) => {
   let requestBody = req.body;
 
@@ -73,4 +82,10 @@ const deleteDetail = async (req, res) => {
   }
 };
 
-module.exports = { getDetails, createDetail, updateDetail, deleteDetail };
+module.exports = {
+  getDetails,
+  createDetail,
+  updateDetail,
+  deleteDetail,
+  getOneDetail,
+};
