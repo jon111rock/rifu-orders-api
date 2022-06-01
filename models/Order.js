@@ -1,46 +1,24 @@
 const mongoose = require("mongoose");
 
-const content = mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  number: {
-    type: Number,
-    required: true,
-  },
-});
-
-const order = mongoose.Schema({
-  id: String,
-  date: {
-    type: String,
-    required: true,
-  },
-  completed_date: String,
-  orderType: String,
-  content: {
-    type: [content],
-    required: true,
-  },
-  total: String,
-  state: String,
-});
-
 const orderSchema = mongoose.Schema({
-  name: {
+  oid: {
     type: String,
-    required: true,
   },
-  address: {
+  date: {
+    type: Date,
+  },
+  completed_date: {
+    type: Date,
+  },
+  type: {
     type: String,
-    required: true,
   },
-  phone_number: String,
-  local_number: String,
-  order: {
-    type: order,
-    required: true,
+  detail: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Detail",
+  },
+  status: {
+    type: String,
   },
 });
 
