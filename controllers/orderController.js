@@ -78,4 +78,29 @@ const deleteOrder = async (req, res) => {
   }
 };
 
-module.exports = { createOrder, getOrders, getOneOrder, deleteOrder };
+const updateOrder = async (req, res) => {
+  try {
+    await Order.updateOne(
+      { _id: req.params.orderId },
+      {
+        $set: {
+          date: req.body.date,
+          completed_date: req.body.completed_date,
+          type: req.body.type,
+          state: req.body.state,
+        },
+      }
+    );
+    res.json({ message: "success" });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
+module.exports = {
+  createOrder,
+  getOrders,
+  getOneOrder,
+  deleteOrder,
+  updateOrder,
+};

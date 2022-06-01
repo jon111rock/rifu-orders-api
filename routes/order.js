@@ -7,7 +7,8 @@ router.route("/:userId").post(orderController.createOrder);
 router
   .route("/:orderId")
   .get(orderController.getOneOrder)
-  .delete(orderController.deleteOrder);
+  .delete(orderController.deleteOrder)
+  .patch(orderController.updateOrder);
 
 router.route("/").get(orderController.getOrders);
 
