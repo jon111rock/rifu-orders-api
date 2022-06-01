@@ -4,12 +4,14 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const orderRouter = require("./routes/orders");
 const itemRouter = require("./routes/Item");
+const detailRouter = require("./routes/detail");
 
 dotenv.config();
 app.use(express.json());
 
 // app.use("/api/order", orderRouter);
 // app.use("/api/item", itemRouter);
+app.use("/api/detail", detailRouter);
 
 mongoose.connect(process.env.DB_CONNECTION, () => {
   console.log("connected to DB");

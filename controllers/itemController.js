@@ -10,7 +10,7 @@ const createItem = async (req, res) => {
     const saveItem = await newItem.save();
     res.json({ message: "success", object: saveItem });
   } catch (error) {
-    res.json({ message: "error", object: error.message });
+    res.json({ message: error.message });
   }
 };
 
