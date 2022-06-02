@@ -8,7 +8,7 @@ const createItem = async (req, res) => {
 
   try {
     const saveItem = await newItem.save();
-    res.json({ message: "success", object: saveItem });
+    res.json({ message: "success", result: saveItem });
   } catch (error) {
     res.json({ message: error.message });
   }
@@ -17,7 +17,7 @@ const createItem = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const items = await Item.find();
-    res.json({ message: "success", object: items });
+    res.json({ message: "success", result: items });
   } catch (error) {
     res.json({ message: error.message });
   }

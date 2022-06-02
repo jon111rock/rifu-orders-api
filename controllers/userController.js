@@ -10,7 +10,7 @@ const createUser = async (req, res) => {
 
     const saveUser = await newUser.save();
 
-    res.json({ message: "success", object: saveUser });
+    res.json({ message: "success", result: saveUser });
   } catch (error) {
     res.json({ message: error.message });
   }
@@ -19,7 +19,7 @@ const createUser = async (req, res) => {
 const getUsers = async (req, res) => {
   try {
     const users = await User.find().lean();
-    res.json({ message: "success", object: users });
+    res.json({ message: "success", result: users });
   } catch (error) {
     res.json({ message: error.message });
   }

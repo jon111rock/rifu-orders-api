@@ -19,9 +19,9 @@ const createDetail = async (req, res) => {
       item: requestBody.item,
     });
     const saveDetail = await newDetail.save();
-    res.json({ message: "success", object: saveDetail });
+    res.json({ message: "success", result: saveDetail });
   } catch (error) {
-    res.json({ message: error.message, object: error.message });
+    res.json({ message: error.message });
   }
 };
 
@@ -31,7 +31,7 @@ const getDetails = async (req, res) => {
       .populate("item")
       .populate("user")
       .lean();
-    res.json({ message: "success", object: details });
+    res.json({ message: "success", result: details });
   } catch (error) {
     res.json({ message: error.message });
   }
@@ -40,7 +40,7 @@ const getDetails = async (req, res) => {
 const getOneDetail = async (req, res) => {
   try {
     const detail = await Detail.findOne({ _id: req.params.detailId });
-    res.json({ message: "success", object: detail });
+    res.json({ message: "success", result: detail });
   } catch (error) {
     res.json({ message: error.message });
   }

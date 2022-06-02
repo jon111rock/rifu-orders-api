@@ -29,7 +29,7 @@ const createOrder = async (req, res) => {
   });
   try {
     const saveOrder = await newOrder.save();
-    res.json({ message: "success", object: newOrder });
+    res.json({ message: "success", result: newOrder });
   } catch (error) {
     res.json({ message: error.message });
   }
@@ -46,7 +46,7 @@ const getOrders = async (req, res) => {
           path: "item",
         },
       });
-    res.json({ message: "success", object: newOrder });
+    res.json({ message: "success", result: newOrder });
   } catch (error) {
     res.json({ message: error.message });
   }
@@ -63,7 +63,7 @@ const getOneOrder = async (req, res) => {
           path: "item",
         },
       });
-    res.json({ message: "success", object: order });
+    res.json({ message: "success", result: order });
   } catch (error) {
     res.json({ message: error.message });
   }
@@ -130,7 +130,7 @@ const getAllOrderWithDetail = async (req, res) => {
           path: "item",
         },
       });
-    res.json({ message: "success", object: newOrder });
+    res.json({ message: "success", result: newOrder });
   } catch (error) {
     res.json({ message: error.message });
   }
