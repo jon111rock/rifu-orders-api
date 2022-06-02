@@ -40,8 +40,18 @@ const updateItem = async (req, res) => {
   }
 };
 
+const deleteItem = async (req, res) => {
+  try {
+    await Item.deleteOne({ _id: req.params.itemId });
+    res.json({ message: "success" });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
 module.exports = {
   createItem,
   getItem,
   updateItem,
+  deleteItem,
 };
