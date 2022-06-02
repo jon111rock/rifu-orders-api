@@ -7,6 +7,9 @@ router.route("/").post(userController.createUser).get(userController.getUsers);
 router
   .route("/:userId")
   .patch(userController.updatedUser)
-  .delete(userController.deleteUser);
+  .delete(userController.deleteUser)
+  .get(userController.getOneUser);
+
+router.route("/name/:userName").get(userController.getUserByName);
 
 module.exports = router;

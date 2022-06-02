@@ -25,6 +25,28 @@ const getUsers = async (req, res) => {
   }
 };
 
+const getOneUser = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.params.userId });
+    res.json({ message: "success", result: user });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
+const getUserByName = async (req, res) => {
+  try {
+    const user = await User.findOne({ name: req.params.userName });
+    if (user === null) {
+      res.json({ message: "user not found" });
+      return;
+    }
+    res.json({ message: "success", result: user });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
 const updatedUser = async (req, res) => {
   try {
     const updatedUser = await User.updateOne(
@@ -54,4 +76,11 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, getUsers, updatedUser, deleteUser };
+module.exports = {
+  createUser,
+  getUsers,
+  updatedUser,
+  deleteUser,
+  getOneUser,
+  getUserByName,
+};
