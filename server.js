@@ -5,7 +5,6 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 
 const itemRouter = require("./routes/Item");
-const detailRouter = require("./routes/detail");
 const userRouter = require("./routes/user");
 const orderRouter = require("./routes/order");
 
@@ -14,7 +13,6 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/item", itemRouter);
-app.use("/api/detail", detailRouter);
 app.use("/api/user", userRouter);
 app.use("/api/order", orderRouter);
 

@@ -1,5 +1,16 @@
 const mongoose = require("mongoose");
 
+const detailSchema = mongoose.Schema({
+  count: {
+    type: Number,
+  },
+  item: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Item",
+    // type: String,
+  },
+});
+
 const orderSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -18,8 +29,9 @@ const orderSchema = mongoose.Schema({
     type: String,
   },
   details: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: "Detail",
+    // type: [mongoose.Schema.Types.ObjectId],
+    // ref: "Detail",
+    type: [detailSchema],
   },
 });
 
