@@ -23,7 +23,25 @@ const getItem = async (req, res) => {
   }
 };
 
+const updateItem = async (req, res) => {
+  try {
+    await Item.updateOne(
+      { _id: req.params.itemId },
+      {
+        $set: {
+          name: req.body.name,
+          price: req.body.price,
+        },
+      }
+    );
+    res.json({ message: "success" });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
 module.exports = {
   createItem,
   getItem,
+  updateItem,
 };
