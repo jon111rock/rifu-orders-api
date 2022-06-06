@@ -1,16 +1,22 @@
 const express = require("express");
-const app = express();
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 const cors = require("cors");
+const dotenv = require("dotenv");
+const compression = require("compression");
+const helmet = require("helmet");
 
 const itemRouter = require("./routes/Item");
 const userRouter = require("./routes/user");
 const orderRouter = require("./routes/order");
 
 dotenv.config();
+
+const app = express();
+
 app.use(express.json());
 app.use(cors());
+app.use(compression());
+app.use(helmet());
 
 app.use("/api/item", itemRouter);
 app.use("/api/user", userRouter);
